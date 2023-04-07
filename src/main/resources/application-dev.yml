@@ -1,0 +1,39 @@
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: abc123456
+  http:
+    multipart:
+      max-file-size: 500Mb
+      max-request-size: 500Mb
+
+logging:
+  level:
+    com.example.demo: DEBUG #DEBUG ERROR FATAL INFO OFF TRACE WARN
+
+mybatis-plus:
+  mapper-locations:  classpath*:mapper/*.xml
+  type-aliases-package: com.example.demo.modular.entity
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: false
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+#swagger开关
+swagger:
+  enable: true  #true false
+
+#接口信息
+api:
+  url: http://127.0.0.1:8080
+  accountsUrl: ${api.url}/api/v1/accounts
